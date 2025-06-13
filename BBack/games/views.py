@@ -6,36 +6,54 @@ from rest_framework.authentication import BasicAuthentication
 from rest_framework.decorators import authentication_classes
 
 from rest_framework.response import Response
-
+from django.http import HttpResponse, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 from bs4 import BeautifulSoup
 import requests
+from rest_framework.renderers import JSONRenderer, TemplateHTMLRenderer
+from rest_framework.decorators import api_view, renderer_classes
 
+from games.models import Game
 from BBack.settings import FRONTEND_URL
+from games.serializer import GameSerializer
 
 
-@api_view(['GET'])
-# Create your views here.
-def listOfGames(request, category, page):
-    if category == 'empty':
-        soup = BeautifulSoup(requests.get(f'https://thelastgame.ru/page/{page}').text, 'html.parser')
-    else:
-        soup = BeautifulSoup(requests.get(f'https://thelastgame.ru/category/{category}/page/{page}').text, 'html.parser')
-    ans = {}
-    for article in soup.find_all('article'):
-
-        name = article.find('h2', class_='post-title').find('a').text
-        image = article.find('div', class_='post-thumbnail').find('a').find('img').attrs["data-srcset"].split(', ')[0].split(' ')[0]
-        description = article.find('div', class_='entry-summary').find('p').text
-        lurl = article.find('h2', class_='post-title').find('a').attrs["href"]
-        burl = FRONTEND_URL + lurl.replace('https://thelastgame.ru/', '')
-
-        groups = [item for item in article.find('div', class_='post-meta').find_all('a') if 'group' in item.attrs['href']]
-        if groups:
-            group = groups[0].text
-        else:
-            group = ''
-
-        ans[name] = {'image': image, 'desc': description, 'last_url': lurl, 'url': burl}
+@api_view(('GET', 'POST'))
+@renderer_classes((TemplateHTMLRenderer, JSONRenderer))
+@csrf_exempt
+def listOfGames(request, page=1, games_on_page=10):
+    if request.method == 'GET':
+        games = Game.objects.all()[games_on_page * (page - 1):games_on_page * page]
+        serializer = GameSerializer(games, many=True)
+        return JsonResponse([{'len': len(games), 'page': page, 'games_on_page': games_on_page}] + serializer.data , safe=False)
 
     
-    return Response({'html': str(ans)})
+@api_view(('POST',))
+@renderer_classes((TemplateHTMLRenderer, JSONRenderer))
+@csrf_exempt
+def searchGame(request):
+    if request.method == 'POST':
+        query = request.data['query']
+        category = request.data['category'] if 'category' in request.data else None
+
+        games_by_name = Game.objects.filter(name__contains=query)
+        games_by_long_desc = Game.objects.filter(long_description__contains=query)
+        games_by_short_desc = Game.objects.filter(short_description__contains=query)
+        games_by_os = Game.objects.filter(os__contains=query)
+        games_by_developer = Game.objects.filter(developer__contains=query)
+        games_by_additional_info = Game.objects.filter(additional_info__contains=query)
+        games = games_by_name | games_by_long_desc | games_by_short_desc | games_by_os | games_by_developer | games_by_additional_info
+
+        if category is not None:
+            games = games.filter(categories=category)
+
+        serializer = GameSerializer(games, many=True)
+        return JsonResponse(serializer.data, safe=False)
+    
+@api_view(('GET',))
+@renderer_classes((TemplateHTMLRenderer, JSONRenderer))
+@csrf_exempt
+def game(request, id):
+    game = Game.objects.get(id=id)
+    serializer = GameSerializer(game)
+    return JsonResponse(serializer.data, safe=False)

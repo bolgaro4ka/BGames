@@ -10,8 +10,18 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: '/games/:id',
-      name: 'list',
+      path: '/library',
+      name: 'libraty',
+      component: () => import('../views/ListGamesView.vue'),
+    },
+    {
+      path: '/community',
+      name: 'community',
+      component: () => import('../views/ListGamesView.vue'),
+    },
+    {
+      path: '/about',
+      name: 'about',
       component: () => import('../views/ListGamesView.vue'),
     },
   ],

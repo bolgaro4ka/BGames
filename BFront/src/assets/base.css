@@ -1,13 +1,39 @@
 
+:root {
+  --header-color: #171d25;
+  --body-color: #1b2838;
+  --background-active-start-color: #277b1c;
+  --background-active-end-color: #126e0f;
+  --background-field-color: #388231;
+  --button-color-hover: #71ee66;
+  --button-color: #295227;
+
+  --sider-link-color: #7b9d7a;
+  --sider-title-color: #3c7c36;
+
+  --text-color: #dcdedf;
+  --selected-text-color: #1fb827;
+
+  --background-black: #000000;
+  --background-footer: #171a21;
+
+  --background-card-color: #162216;
+
+}
+
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
   margin: 0;
   font-weight: normal;
+  font-family: 'Anonymous Pro', monospace;
+  color: var(--text-color);
 }
 
 body {
+  background-color: var(--body-color);
   transition:
     color 0.5s,
     background-color 0.5s;
