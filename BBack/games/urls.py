@@ -4,7 +4,12 @@ from django.urls import include
 from .views import *
 
 urlpatterns = [
-    path("list/<int:page>/<int:games_on_page>/", listOfGames),
+    path("len/", len_games),
+    path("like/", like),
+    path("dislike/", dislike),
+    path("list/", listOfGames),
     path("search/", searchGame),
+    path("cat/<int:id>/", cats),
     path("<str:id>/", game),
+    
 ]

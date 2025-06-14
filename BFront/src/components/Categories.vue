@@ -10,21 +10,22 @@ import { Navigation, Pagination } from 'swiper/modules';
 SwiperCore.use([Navigation, Pagination]);
 
 const categories = [
-  { title: 'Хоррор', image: 'horror.webp' },
-  { title: 'Стратергия', image: 'strategy.webp' },
-  { title: 'Симулятор', image: 'simulation.webp' },
-  { title: 'Экшен', image: 'action.webp' },
-  { title: 'Спортивные', image: 'sports.webp' },
-  { title: 'Логические', image: 'logic.webp' },
-  { title: 'Приключение', image: 'open-world.webp' },
-  { title: 'Гонки', image: 'racing.webp' },
-  { title: 'RPG', image: 'rpg.webp' },
-  { title: 'Шутеры', image: 'shooter.webp' },
-  { title: 'Без рубрики', image: 'no_rub.webp' },
-  { title: 'Аркады', image: 'arcade.webp' },
-  { title: 'Горячая новинка', image: 'new.webp' },
-  { title: 'Драки', image: 'fighting_martial_arts.webp' },
-  // Добавь ещё, если нужно
+  { title: 'Хоррор', image: 'horror.webp', id: 13 },
+  { title: 'Стратергия', image: 'strategy.webp', id: 8  },
+  { title: 'Симулятор', image: 'simulation.webp' , id: 2 },
+  { title: 'Экшен', image: 'action.webp', id: 5  },
+  { title: 'Спортивные', image: 'sports.webp', id: 14  },
+  { title: 'Логические', image: 'logic.webp', id: 12  },
+  { title: 'Приключения', image: 'open-world.webp', id: 6  },
+  { title: 'Гонки', image: 'racing.webp', id: 9  },
+  { title: 'RPG', image: 'rpg.webp', id: 3  },
+  { title: 'Шутеры', image: 'shooter.webp', id: 11  },
+  { title: 'Без рубрики', image: 'no_rub.webp', id: 7  },
+  { title: 'Аркады', image: 'arcade.webp', id: 1  },
+  { title: 'Горячая новинка', image: 'new.webp', id: 4  },
+  { title: 'Драки', image: 'fighting_martial_arts.webp', id: 10  },
+  { title: 'Квесты', image: 'quest.webp', id: 15  },
+  { title: 'VR', image: 'vr.webp', id: 16  },
 ];
 </script>
 
@@ -41,11 +42,13 @@ const categories = [
         class="category-swiper"
       >
         <SwiperSlide v-for="(cat, index) in categories" :key="index">
-          <div class="card" :style="{ backgroundImage: `url(/public/categories/${cat.image})` }">
-            <div class="overlay">
-              <span>{{ cat.title }}</span>
+          <RouterLink :to="'/cat/' + cat.id + '/'">
+            <div class="card" :style="{ backgroundImage: `url(/public/categories/${cat.image})` }">
+              <div class="overlay">
+                <span>{{ cat.title }}</span>
+              </div>
             </div>
-          </div>
+          </RouterLink>
         </SwiperSlide>
       </Swiper>
     </div>
@@ -54,7 +57,7 @@ const categories = [
 
 <style lang="scss" scoped>
 .categories__wrapper {
-  background: #162131;
+  background: var(--second-body-background);
   padding: 2rem;
   color: white;
 

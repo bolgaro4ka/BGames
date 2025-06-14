@@ -38,7 +38,7 @@ class Game(models.Model):
 
     long_description = models.TextField(verbose_name="Полное описание", default="")
 
-    year = models.IntegerField(verbose_name="Год", default=0)
+    year = models.CharField(verbose_name="Год", default=0)
     developer = models.CharField(verbose_name="Разработчик", max_length=255, default="")
     version = models.CharField(verbose_name="Версия", max_length=255, default="")
     language = models.CharField(verbose_name="Язык", max_length=255, default="")
@@ -62,6 +62,13 @@ class Game(models.Model):
     download_url3 = models.CharField(verbose_name="Ссылка на скачивание 3", max_length=255, default="")
     download_url4 = models.CharField(verbose_name="Ссылка на скачивание 4", max_length=255, default="")
     download_url5 = models.CharField(verbose_name="Ссылка на скачивание 5", max_length=255, default="")
+
+    # скачиваний
+    downloaded_count = models.IntegerField(verbose_name="Количество скачиваний", default=0)
+
+    # социальные параметры
+    likes = models.IntegerField(verbose_name="Лайки", default=0)
+    dislikes = models.IntegerField(verbose_name="Дизлайки", default=0)
 
     def __str__(self):
         return self.name

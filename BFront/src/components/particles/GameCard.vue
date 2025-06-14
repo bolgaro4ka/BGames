@@ -9,7 +9,7 @@ console.log(props.game);
 <template>
     <div class="game-card__wrapper">
         <div class="game-card">
-            <RouterLink :to="'/game/' + props.game.game_url.split('/').slice( props.game.game_url.split('/').length - 2).slice(0, props.game.game_url.split('/').slice( props.game.game_url.split('/').length - 2).length-1)">
+            <RouterLink :to="'/game/' + props.game.id">
                 <img :src="props.game.image_url">
                 <h2 class="game-card__title">🎮 {{props.game.name}}</h2>
                 <p class="game-card__description">{{props.game.short_description}}</p>

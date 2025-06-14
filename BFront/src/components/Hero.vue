@@ -3,14 +3,17 @@ import { GET_GAME_BY_ID_URL } from '@/config';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import axios from 'axios';
 import { ref } from 'vue';
+import SearchResults from './SearchResults.vue';
 
 function getRandomInt(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-const res = await axios.get(GET_GAME_BY_ID_URL + getRandomInt(34, 104) + '/').then(res => {
+const res = await axios.get(GET_GAME_BY_ID_URL + getRandomInt(34, 1600) + '/').then(res => {
     console.log(res.data); return res.data
 })
+
+const query = ref('');
 
 </script>
 
@@ -25,13 +28,16 @@ const res = await axios.get(GET_GAME_BY_ID_URL + getRandomInt(34, 104) + '/').th
                     <RouterLink to="/">Новости</RouterLink>
                 </div>
                 <div class="hero__search">
-                    <input type="text" placeholder="Поиск">
+                    <input type="text" placeholder="Поиск" v-model="query">
                     <button><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg></button>
                 </div>
+                <Suspense>
+                    <SearchResults :query/>
+                </Suspense>
             </div>
         </div>
         <div class="hero">
-            <RouterLink to="/game/34">
+            <RouterLink :to="'/game/' + res.id">
                 <img :src="res.image_url" alt="">
             </RouterLink>
         </div>

@@ -3,9 +3,13 @@ import { GAMES_LIST_URL } from '@/config';
 import axios from 'axios';
 import GameCard from './particles/GameCard.vue';
 
+const props = defineProps(['cat'])
 
-
-const response = await axios.get(GAMES_LIST_URL+'2/20/').then(res => {
+const response = await axios.post(GAMES_LIST_URL, {
+    page: 1,
+    limit: 100,
+    category_id: props?.cat
+}).then(res => {
     console.log(res.data); return res.data.slice(1, res.data.length);
 });
 

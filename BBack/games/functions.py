@@ -1,18 +1,25 @@
 from bs4 import BeautifulSoup
 import requests
-from BBack.settings import FRONTEND_URL
+from BBack.settings import FRONTEND_URL, UPDATE_OLD_GAMES
 
 from games.models import Game, Category
 
 
 def updateGames():
-    for page in range(1, 10):  #846
+    for page in range(160, 846):  #846
         ans = {}
         soup = BeautifulSoup(requests.get(f'https://thelastgame.ru/page/{page}').text, 'html.parser')
         for article in soup.find_all('article'):
-
+            
             name = article.find('h2', class_='post-title').find('a').text
-            image = article.find('div', class_='post-thumbnail').find('a').find('img').attrs["data-srcset"].split(', ')[0].split(' ')[0]
+            if UPDATE_OLD_GAMES == False and Game.objects.filter(name=name).exists():
+                print(name, 'skip (UPDATE_OLD_GAMES - False)')
+                continue
+            try:
+                image = article.find('div', class_='post-thumbnail').find('a').find('img').attrs["data-srcset"].split(', ')[0].split(' ')[0]
+            except Exception as e:
+                image = ''
+                print(image, name, e)
             description = article.find('div', class_='entry-summary').find('p').text
             lurl = article.find('h2', class_='post-title').find('a').attrs["href"]
             burl = FRONTEND_URL + lurl.replace('https://thelastgame.ru/', '')
