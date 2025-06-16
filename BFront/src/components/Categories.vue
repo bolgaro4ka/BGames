@@ -43,7 +43,7 @@ const categories = [
       >
         <SwiperSlide v-for="(cat, index) in categories" :key="index">
           <RouterLink :to="'/cat/' + cat.id + '/'">
-            <div class="card" :style="{ backgroundImage: `url(/public/categories/${cat.image})` }">
+            <div class="card" :style="{ backgroundImage: `url(/categories/${cat.image})` }">
               <div class="overlay">
                 <span>{{ cat.title }}</span>
               </div>

@@ -18,7 +18,7 @@ SwiperCore.use([Navigation, Pagination]);
 const route = useRoute();
 
 const res = await axios.get(GET_GAME_BY_ID_URL + route.params.id + '/').then(res => {
-    console.log(res.data); return res.data
+    return res.data
 })
 
 

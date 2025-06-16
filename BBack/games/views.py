@@ -33,7 +33,7 @@ def listOfGames(request):
             games = Game.objects.all()[games_on_page * (page - 1):games_on_page * page]
 
         serializer = GameSerializer(games, many=True)
-        return JsonResponse([{'len': len(games), 'page': page, 'limit': games_on_page}] + serializer.data , safe=False)
+        return JsonResponse([{'len': len(games), 'page': page, 'limit': games_on_page, 'all_games': len(Game.objects.all())}] + serializer.data , safe=False)
 
 @api_view(('GET',))
 @renderer_classes((TemplateHTMLRenderer, JSONRenderer))

@@ -2,8 +2,6 @@
 
 const props = defineProps(['game']);
 
-console.log(props.game);
-
 </script>
 
 <template>

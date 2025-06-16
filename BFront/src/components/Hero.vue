@@ -10,15 +10,12 @@ function getRandomInt(min: number, max: number) {
 }
 
 const res = await axios.get(GET_GAME_BY_ID_URL + getRandomInt(34, 1600) + '/').then(res => {
-    console.log(res.data); return res.data
+    return res.data
 })
 
-const games = [{
-        id: 91, image: '/trend_games/91.jpg',
-    },
-    {
-    id: 97, image: '/trend_games/97.avif',
-    },
+const games = [
+    {id: 91, image: '/trend_games/91.jpg',},
+    {id: 97, image: '/trend_games/97.avif',},
     {id: 49, image: '/trend_games/49.jpg'},
     {id: 78, image: '/trend_games/78.jpg'},
     {id: 2417, image: '/trend_games/2417.jpg'},
