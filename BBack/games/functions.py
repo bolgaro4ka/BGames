@@ -1,12 +1,12 @@
 from bs4 import BeautifulSoup
 import requests
 from BBack.settings import FRONTEND_URL, UPDATE_OLD_GAMES
-
+from colorama import Fore, Back, Style
 from games.models import Game, Category
 
 
 def updateGames():
-    for page in range(160, 846):  #846
+    for page in range(400, 501):  #846
         ans = {}
         soup = BeautifulSoup(requests.get(f'https://thelastgame.ru/page/{page}').text, 'html.parser')
         for article in soup.find_all('article'):
@@ -44,68 +44,68 @@ def updateGames():
             try:
                 year = info_game[0].split(': ')[1]
             except Exception as e:
-                year = ''
+                year = info_game[0].replace('Год выпуска:','')
                 print(name, e)
 
             try:
                 genre = info_game[1].split(': ')[1]
             except Exception as e:
-                genre = ''
+                genre = info_game[1].replace('Жанр:', '')
                 print(name, e)
 
             try:
                 dev = info_game[2].split(': ')[1]
             except Exception as e:
-                dev = ''
+                dev = info_game[2].replace('Разработчик:', '')
                 print(name, e)
 
             try:
                 version = info_game[3].split(': ')[1]
             except Exception as e:
-                version = ''
+                version = info_game[3].replace('Версия:', '')
                 print(name, e)
 
             try:
                 language = info_game[4].split(': ')[1]
             except Exception as e:
-                language = ''
+                language = info_game[4].replace('Язык интерфейса:', '')
                 print(name, e)
 
             try:
                 tablet = info_game[5].split(': ')[1]
             except Exception as e:
-                tablet = ''
+                tablet = info_game[5].replace('Таблетка:', '')
                 print(name, e)
 
             requiments = page_soup.find('div', class_='entry-inner').find_all('div')[3].text[33:].split('\n')
             try:
                 os = requiments[0].split(': ')[1]
             except Exception as e:
-                os = ''
+                os = requiments[0].replace('Операционная система:', '')
                 print(name, e)
 
             try:
                 cpu = requiments[1].split(': ')[1]
             except Exception as e:
-                cpu = ''
+                cpu = requiments[1].replace('Процессор:', '')
                 print(name, e)
 
             try:
                 ram = requiments[2].split(': ')[1]
             except Exception as e:
-                ram = ''
+                ram = requiments[2].replace('Оперативная память:', '')
                 print(name, e)
 
             try:
                 gpu = requiments[3].split(': ')[1]
             except Exception as e:
-                gpu = ''
+                gpu = requiments[3].replace('Видеокарта:', '')
                 print(name, e)
 
             try:
                 size = requiments[4].split(': ')[1]
             except Exception as e:
-                size = ''
+                size = requiments[4].replace('Памяти на Жестком Диске:', '')
                 print(name, e)
 
             try:
@@ -160,6 +160,8 @@ def updateGames():
             ans[name]['download_url1'] = download_url
 
             ans[name]['additional_info'] = add_block
+
+            print(Fore.GREEN + str('|OK| ' + name))
 
         
 
@@ -234,6 +236,8 @@ def updateGames():
 
                 lgame.save()
 
-        print(f'{page} |')
+        
+
+        print(Fore.BLUE + f'| {page} / 846 |')
 
 # from games.functions import *; updateGames()
