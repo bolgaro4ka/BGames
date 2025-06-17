@@ -12,6 +12,8 @@ def updateGames():
         for article in soup.find_all('article'):
             
             name = article.find('h2', class_='post-title').find('a').text
+            if name == 'Enlisted' or name == 'Wat Thunder' or name == 'Crossout' or name == 'ГТА Россия – NEXT RP':
+                continue
             if UPDATE_OLD_GAMES == False and Game.objects.filter(name=name).exists():
                 print(name, 'skip (UPDATE_OLD_GAMES - False)')
                 continue

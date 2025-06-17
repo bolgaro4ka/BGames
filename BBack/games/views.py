@@ -25,15 +25,20 @@ def listOfGames(request):
     if request.method == 'POST':
         page = int(request.data['page'])
         games_on_page = int(request.data['limit'])
-        category_id = int(request.data['category_id']) if 'category_id' in request.data else None
+        category_id = int(request.data['category_id']) if ('category_id' in request.data) else None
 
-        if category_id is not None:
-            games = Game.objects.filter(categories=category_id)[games_on_page * (page - 1):games_on_page * page]
+        query = request.data['query'] if 'query' in request.data else None
+
+        if (category_id is not None) and category_id != -1:
+            games = Game.objects.filter(categories=category_id)
         else:
-            games = Game.objects.all()[games_on_page * (page - 1):games_on_page * page]
+            games = Game.objects.all()
 
-        serializer = GameSerializer(games, many=True)
-        return JsonResponse([{'len': len(games), 'page': page, 'limit': games_on_page, 'all_games': len(Game.objects.all())}] + serializer.data , safe=False)
+        if query:
+            games = games.filter(name__contains=query)
+
+        serializer = GameSerializer(games[games_on_page * (page - 1):games_on_page * page], many=True)
+        return JsonResponse([{'len': len(games), 'page': page, 'limit': games_on_page, 'all_games': len(games)}] + serializer.data , safe=False)
 
 @api_view(('GET',))
 @renderer_classes((TemplateHTMLRenderer, JSONRenderer))
@@ -100,3 +105,11 @@ def dislike(request):
     game.dislikes += 1
     game.save()
     return JsonResponse(GameSerializer(game).data, safe=False)
+
+@api_view(('GET',))
+@renderer_classes((TemplateHTMLRenderer, JSONRenderer))
+@csrf_exempt
+def all_cats(request):
+    if request.method == 'GET':
+        return JsonResponse(CategorySerializer(Category.objects.all(), many=True).data, safe=False)
+    

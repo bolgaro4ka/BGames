@@ -17,3 +17,5 @@ export const GET_LEN_GAMES = `${GAMES_URL}/len/`
 export const POST_LIKE = `${GAMES_URL}/like/`
 
 export const POST_DISLIKE = `${GAMES_URL}/dislike/`
+
+export const GET_CATS = `${GAMES_URL}/cats/`

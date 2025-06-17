@@ -10,6 +10,7 @@ urlpatterns = [
     path("list/", listOfGames),
     path("search/", searchGame),
     path("cat/<int:id>/", cats),
+    path("cats/", all_cats),
     path("<str:id>/", game),
     
 ]

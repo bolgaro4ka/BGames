@@ -1,6 +1,13 @@
 <script setup lang="ts">
 
-const props = defineProps(['game']);
+const props = defineProps(['game', 'cats']);
+
+
+function getCatById(id : number) {
+    return (props.cats as Object[]).filter((val, index) => {if (val.id == id) return val})[0]
+
+
+}
 
 </script>
 
@@ -10,6 +17,15 @@ const props = defineProps(['game']);
             <RouterLink :to="'/game/' + props.game.id">
                 <img :src="props.game.image_url">
                 <h2 class="game-card__title">🎮 {{props.game.name}}</h2>
+                <div class="game-card__categories" >
+                    <div v-for="(cat, index) in props.game.categories" class="game-card__category" :key="cat">
+                        <RouterLink :to="`/cat/${cat}`" class="game-card__link">
+                            {{ getCatById(cat)?.name }}
+                        </RouterLink>
+                        <p v-if="index < props.game.categories.length - 1" class="game-card__slash">/</p>
+                    </div>
+                </div>
+                
                 <p class="game-card__description">{{props.game.short_description}}</p>
             </RouterLink>
 
@@ -28,7 +44,7 @@ const props = defineProps(['game']);
     
     .game-card {
         background-color: var(--background-card-color);
-        height: 500px;
+        height: 600px;
         width: 440px;
         justify-content: space-between;
         display: flex;
@@ -37,8 +53,26 @@ const props = defineProps(['game']);
             text-decoration: none;
         }
 
+        .game-card__category {
+            display: flex;
+            gap: 10px;
+
+        }
+
         .game-card__title {
             padding: 10px;
+        }
+
+        .game-card__categories {
+            display: flex;
+            gap: 10px;
+            padding: 0 10px;
+            
+            font-size: 18px;
+        }
+
+        .game-card__link {
+            text-decoration: underline;
         }
 
         .game-card__description {
