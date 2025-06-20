@@ -20,6 +20,8 @@ CSRF_TRUSTED_ORIGINS = [
       'http://10.66.66.5:4000',
         'http://localhost:5173',
         'http://localhost:1345',
+        'https://games.blgr.space',
+
 
               ]
 
@@ -33,11 +35,12 @@ SECRET_KEY = "django-insecure-_dykkl*lz!4xt2n9!#6_k8mp%oacz+4i8jhfyw_joc=#m@tz2y
 DEBUG = False
 UPDATE_OLD_GAMES = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['games.blgr.space',]
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
     'http://localhost:1345',
+    'https://games.blgr.space',
 ]
 
 

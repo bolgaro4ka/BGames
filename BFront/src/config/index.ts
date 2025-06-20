@@ -5,7 +5,7 @@
 
 // BASE URL's
 
-export const BASE_URL = 'http://localhost:1346'
+export const BASE_URL = 'https://games-api.blgr.space'
 
 export const API_URL = `${BASE_URL}/api`
 
