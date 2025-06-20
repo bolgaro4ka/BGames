@@ -96,9 +96,9 @@ const res = await axios.get(GET_GAME_BY_ID_URL + route.params.id + '/').then(res
                     </div>
                     
                 </div>
-                <div class="game__additional" v-if="res.additional_info != 'ь БЕЗ торрент файлачерез uFiler'">
+                <div class="game__additional" v-if="res.additional_info != 'ть БЕЗ торрент файлачерез uFiler' && res.additional_info">
                     <h3>Дополнительная информация</h3>
-                    <p>{{ res.additional_info != 'ь БЕЗ торрент файлачерез uFiler' ? res.additional_info : '' }}</p>
+                    <p>{{ res.additional_info != 'ть БЕЗ торрент файлачерез uFiler' ? res.additional_info : '' }}</p>
                 </div>
             </div>
             
