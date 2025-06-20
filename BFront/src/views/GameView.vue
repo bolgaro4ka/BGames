@@ -96,7 +96,12 @@ const res = await axios.get(GET_GAME_BY_ID_URL + route.params.id + '/').then(res
                     </div>
                     
                 </div>
+                <div class="game__additional" v-if="res.additional_info != 'ь БЕЗ торрент файлачерез uFiler'">
+                    <h3>Дополнительная информация</h3>
+                    <p>{{ res.additional_info != 'ь БЕЗ торрент файлачерез uFiler' ? res.additional_info : '' }}</p>
+                </div>
             </div>
+            
 
         </div>
     </div>
@@ -109,6 +114,12 @@ const res = await axios.get(GET_GAME_BY_ID_URL + route.params.id + '/').then(res
         font-size: 40px;
         text-align: center;
     }
+}
+
+.game__additional {
+    background-color: var(--header-color);
+    padding: 20px;
+    margin: 20px 0;
 }
 
 .game__download-link {

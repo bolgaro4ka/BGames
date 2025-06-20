@@ -22,7 +22,7 @@ const router = createRouter({
     {
       path: '/about',
       name: 'about',
-      component: () => import('../views/ListGamesView.vue'),
+      component: () => import('../views/AboutView.vue'),
     },
     {
       path: '/game/:id',

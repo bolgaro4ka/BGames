@@ -6,13 +6,13 @@ from games.models import Game, Category
 
 
 def updateGames():
-    for page in range(400, 501):  #846
+    for page in range(1, 848):  #846
         ans = {}
         soup = BeautifulSoup(requests.get(f'https://thelastgame.ru/page/{page}').text, 'html.parser')
         for article in soup.find_all('article'):
             
             name = article.find('h2', class_='post-title').find('a').text
-            if name == 'Enlisted' or name == 'Wat Thunder' or name == 'Crossout' or name == 'ГТА Россия – NEXT RP':
+            if name == 'Enlisted' or name == 'Wat Thunder' or name == 'Crossout' or name == 'ГТА Россия – NEXT RP' or name == 'The Walking Dead: The Final Season — Episode 1-4':
                 continue
             if UPDATE_OLD_GAMES == False and Game.objects.filter(name=name).exists():
                 print(name, 'skip (UPDATE_OLD_GAMES - False)')
@@ -58,60 +58,96 @@ def updateGames():
             try:
                 dev = info_game[2].split(': ')[1]
             except Exception as e:
-                dev = info_game[2].replace('Разработчик:', '')
-                print(name, e)
+                try:
+                    dev = info_game[2].replace('Разработчик:', '')
+                    print(name, e)
+                except:
+                    print('| DEEP ERROR |',name)
+                    dev=''
 
             try:
                 version = info_game[3].split(': ')[1]
             except Exception as e:
-                version = info_game[3].replace('Версия:', '')
-                print(name, e)
+                try:
+                    version = info_game[3].replace('Версия:', '')
+                    print(name, e)
+                except:
+                    print('| DEEP ERROR |',name)
+                    version=''
 
             try:
                 language = info_game[4].split(': ')[1]
             except Exception as e:
-                language = info_game[4].replace('Язык интерфейса:', '')
-                print(name, e)
+                try:
+                    language = info_game[4].replace('Язык интерфейса:', '')
+                    print(name, e)
+                except:
+                    print('| DEEP ERROR |',name)
+                    language=''
 
             try:
                 tablet = info_game[5].split(': ')[1]
             except Exception as e:
-                tablet = info_game[5].replace('Таблетка:', '')
-                print(name, e)
+                try:
+                    tablet = info_game[5].replace('Таблетка:', '')
+                    print(name, e)
+                except:
+                    print('| DEEP ERROR |',name)
+                    tablet=''
 
             requiments = page_soup.find('div', class_='entry-inner').find_all('div')[3].text[33:].split('\n')
             try:
                 os = requiments[0].split(': ')[1]
             except Exception as e:
-                os = requiments[0].replace('Операционная система:', '')
-                print(name, e)
+                try:
+                    os = requiments[0].replace('Операционная система:', '')
+                    print(name, e)
+                except:
+                    print('| DEEP ERROR |',name)
+                    os=''
 
             try:
                 cpu = requiments[1].split(': ')[1]
             except Exception as e:
-                cpu = requiments[1].replace('Процессор:', '')
-                print(name, e)
+                try:
+                    cpu = requiments[1].replace('Процессор:', '')
+                    print(name, e)
+                except:
+                    print('| DEEP ERROR |',name)
+                    cpu=''
 
             try:
                 ram = requiments[2].split(': ')[1]
             except Exception as e:
-                ram = requiments[2].replace('Оперативная память:', '')
-                print(name, e)
+                try:
+                    ram = requiments[2].replace('Оперативная память:', '')
+                    print(name, e)
+                except:
+                    print('| DEEP ERROR |',name)
+                    ram=''
 
             try:
                 gpu = requiments[3].split(': ')[1]
             except Exception as e:
-                gpu = requiments[3].replace('Видеокарта:', '')
-                print(name, e)
+                try:
+                    gpu = requiments[3].replace('Видеокарта:', '')
+                    print(name, e)
+                except:
+                    print('| DEEP ERROR |',name)
+                    gpu=''
 
             try:
                 size = requiments[4].split(': ')[1]
             except Exception as e:
-                size = requiments[4].replace('Памяти на Жестком Диске:', '')
-                print(name, e)
+                try:
+                    size = requiments[4].replace('Памяти на Жестком Диске:', '')
+                    print(name, e)
+                except:
+                    print('| DEEP ERROR |',name)
+                    size=''
 
             try:
-                add_block = page_soup.find('div', class_='entry-inner').find_all('div')[5].text[6:]
+                add_block = page_soup.find('div', class_='entry-inner').find_all('div')[5].text[5:]
             except:
                 add_block = ''
 

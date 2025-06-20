@@ -6,10 +6,17 @@ import Footer from './components/Footer.vue';
 
 <template>
   <Header />
-  <Suspense>
-    <RouterView />
-  </Suspense>
+  <div class="content">
+    <Suspense>
+      <RouterView />
+    </Suspense>
+  </div>
   <Footer/>
   
 </template>
 
+<style lang="scss" scoped>
+  .content {
+    min-height: calc(100vh - 126px);
+  }
+</style>

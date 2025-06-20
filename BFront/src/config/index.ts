@@ -1,8 +1,17 @@
-export const BASE_URL = 'http://localhost:8000'
+// Config Url File
+
+// Backend port: 1346
+// Frontend port: 1345
+
+// BASE URL's
+
+export const BASE_URL = 'http://localhost:1346'
 
 export const API_URL = `${BASE_URL}/api`
 
 export const GAMES_URL = `${API_URL}/games`
+
+// GAMES APP URL's
 
 export const GAMES_LIST_URL = `${GAMES_URL}/list/`
 
@@ -19,3 +28,5 @@ export const POST_LIKE = `${GAMES_URL}/like/`
 export const POST_DISLIKE = `${GAMES_URL}/dislike/`
 
 export const GET_CATS = `${GAMES_URL}/cats/`
+
+// By Bolgaro4ka / 2025

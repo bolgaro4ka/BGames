@@ -19,6 +19,7 @@ CSRF_TRUSTED_ORIGINS = [
     'http://192.168.0.228:4000',
       'http://10.66.66.5:4000',
         'http://localhost:5173',
+        'http://localhost:1345',
 
               ]
 
@@ -29,13 +30,14 @@ CSRF_TRUSTED_ORIGINS = [
 SECRET_KEY = "django-insecure-_dykkl*lz!4xt2n9!#6_k8mp%oacz+4i8jhfyw_joc=#m@tz2y"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-UPDATE_OLD_GAMES = False
+DEBUG = False
+UPDATE_OLD_GAMES = True
 
 ALLOWED_HOSTS = []
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
+    'http://localhost:1345',
 ]
 
 
@@ -121,7 +123,7 @@ LANGUAGE_CODE = "ru-RU"
 
 TIME_ZONE = "UTC"
 
-FRONTEND_URL = 'http://localhost:5173/'
+FRONTEND_URL = 'http://localhost:1345/'
 
 USE_I18N = True
 
