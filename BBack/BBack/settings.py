@@ -32,7 +32,7 @@ CSRF_TRUSTED_ORIGINS = [
 SECRET_KEY = "django-insecure-_dykkl*lz!4xt2n9!#6_k8mp%oacz+4i8jhfyw_joc=#m@tz2y"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 UPDATE_OLD_GAMES = True
 
 ALLOWED_HOSTS = ['games.blgr.space',]
