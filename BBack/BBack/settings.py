@@ -21,8 +21,7 @@ CSRF_TRUSTED_ORIGINS = [
         'http://localhost:5173',
         'http://localhost:1345',
         'https://games.blgr.space',
-
-
+        'https://games-api.blgr.space'
               ]
 
 # Quick-start development settings - unsuitable for production
@@ -32,7 +31,7 @@ CSRF_TRUSTED_ORIGINS = [
 SECRET_KEY = "django-insecure-_dykkl*lz!4xt2n9!#6_k8mp%oacz+4i8jhfyw_joc=#m@tz2y"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 UPDATE_OLD_GAMES = True
 
 ALLOWED_HOSTS = ['games.blgr.space','games-api.blgr.space']
@@ -41,6 +40,7 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
     'http://localhost:1345',
     'https://games.blgr.space',
+    'https://games-api.blgr.space'
 ]
 
 
