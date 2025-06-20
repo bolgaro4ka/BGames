@@ -1,12 +1,18 @@
 <script setup lang="ts">
 
-const props = defineProps(['game', 'cats']);
+interface Category {
+    id: number;
+    name: string;
+    // add other properties if needed
+}
 
+const props = defineProps<{
+    game: any,
+    cats: Category[]
+}>();
 
-function getCatById(id : number) {
-    return (props.cats as Object[]).filter((val, index) => {if (val.id == id) return val})[0]
-
-
+function getCatById(id: number): Category | undefined {
+    return props.cats.find((val) => val.id === id);
 }
 
 </script>

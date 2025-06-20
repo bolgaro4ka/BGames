@@ -24,7 +24,12 @@ const games = [
     {id:4, image: '/trend_games/4n.jpg'},
 ]
 
-const game : Ref<Object> = ref(games[getRandomInt(0, games.length - 1)] as any);
+interface Game {
+    id: number;
+    image: string;
+}
+
+const game: Ref<Game> = ref(games[getRandomInt(0, games.length - 1)] as Game);
 
 const query = ref('');
 
