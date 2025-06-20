@@ -7,7 +7,7 @@ import threading
 
 
 def lc():
-    FIRST_LOAD = True
+    FIRST_LOAD = False
     while True:
         if FIRST_LOAD:
             updateGames()
@@ -21,7 +21,7 @@ def lc():
 
 
 
-        time.sleep(60*60*10)
+        time.sleep(60)
 
 
 def run_lc():
