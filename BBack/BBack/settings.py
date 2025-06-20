@@ -35,7 +35,7 @@ SECRET_KEY = "django-insecure-_dykkl*lz!4xt2n9!#6_k8mp%oacz+4i8jhfyw_joc=#m@tz2y
 DEBUG = True
 UPDATE_OLD_GAMES = True
 
-ALLOWED_HOSTS = ['games.blgr.space',]
+ALLOWED_HOSTS = ['games.blgr.space','games-api.blgr.space']
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
