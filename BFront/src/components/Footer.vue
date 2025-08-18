@@ -79,4 +79,20 @@ function handleOpen() {
         text-decoration: none;
     }
 }
+
+@media screen and (max-width: 570px) {
+    .footer {
+        flex-direction: column;
+        padding-bottom: 10px;
+    }
+
+    .footer__content {
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+    
+}
 </style>

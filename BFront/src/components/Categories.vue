@@ -10,20 +10,20 @@ import { Navigation, Pagination } from 'swiper/modules';
 SwiperCore.use([Navigation, Pagination]);
 
 const categories = [
-  { title: 'Хоррор', image: 'horror.webp', id: 13 },
-  { title: 'Стратергия', image: 'strategy.webp', id: 8  },
-  { title: 'Симулятор', image: 'simulation.webp' , id: 2 },
-  { title: 'Экшен', image: 'action.webp', id: 5  },
+  { title: 'Хоррор', image: 'horror.webp', id: 10 },
+  { title: 'Стратергия', image: 'strategy.webp', id: 2  },
+  { title: 'Симулятор', image: 'simulation.webp' , id: 1 },
+  { title: 'Экшен', image: 'action.webp', id: 3  },
   { title: 'Спортивные', image: 'sports.webp', id: 14  },
-  { title: 'Логические', image: 'logic.webp', id: 12  },
+  { title: 'Логические', image: 'logic.webp', id: 8  },
   { title: 'Приключения', image: 'open-world.webp', id: 6  },
   { title: 'Гонки', image: 'racing.webp', id: 9  },
-  { title: 'RPG', image: 'rpg.webp', id: 3  },
+  { title: 'RPG', image: 'rpg.webp', id: 4  },
   { title: 'Шутеры', image: 'shooter.webp', id: 11  },
-  { title: 'Без рубрики', image: 'no_rub.webp', id: 7  },
-  { title: 'Аркады', image: 'arcade.webp', id: 1  },
-  { title: 'Горячая новинка', image: 'new.webp', id: 4  },
-  { title: 'Драки', image: 'fighting_martial_arts.webp', id: 10  },
+  { title: 'Без рубрики', image: 'no_rub.webp', id: 12  },
+  { title: 'Аркады', image: 'arcade.webp', id: 5  },
+  { title: 'Горячая новинка', image: 'new.webp', id: 7  },
+  { title: 'Драки', image: 'fighting_martial_arts.webp', id: 13  },
   { title: 'Квесты', image: 'quest.webp', id: 15  },
   { title: 'VR', image: 'vr.webp', id: 16  },
 ];
@@ -39,6 +39,11 @@ const categories = [
         :navigation="true"
         :loop="true"
         :pagination="{ clickable: true }"
+        :breakpoints="{
+          0: { slidesPerView: 1 },
+          400: { slidesPerView: 2 },
+          900: { slidesPerView: 4 }
+        }"
         class="category-swiper"
       >
         <SwiperSlide v-for="(cat, index) in categories" :key="index">
@@ -131,5 +136,14 @@ const categories = [
       }
     }
   }
+}
+
+@media screen and (max-width: 900px) {
+  .categories__wrapper {
+    .categories {
+      width: 100%;
+    }
+  }
+  
 }
 </style>

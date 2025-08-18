@@ -101,4 +101,16 @@ function getCatById(id: number): Category | undefined {
         }
 
     }
+
+    @media screen and (max-width: 460px) {
+        .game-card {
+            
+            width: 100%;
+        }
+
+        .game-card__categories {
+            flex-wrap: wrap;
+        }
+        
+    }
 </style>

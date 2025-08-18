@@ -303,4 +303,33 @@ function scrollToTop() {
     cursor: pointer;
 }
 
+@media screen and (max-width: 900px) {
+  .plof__wrapper {
+    width: 100%;
+  }
+
+  .plof__params {
+    flex-direction: column;
+
+    .plof__param {
+      width: 100%;
+    }
+  }
+
+  .plof__cards {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  
+}
+
+@media screen and (max-width: 600px) {
+  .plof__pagination {
+    flex-wrap: wrap;
+  }
+  
+}
+
 </style>

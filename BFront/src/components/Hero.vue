@@ -129,5 +129,43 @@ const query = ref('');
         color: var(--text-color);
     }
 }
+
+
+
+@media screen and (max-width: 900px) {
+    .hero__menu-content {
+        width: 90%;
+        top: 150px;
+    }
+
+    .hero__links {
+        display: none;
+    }
+
+    .hero__search {
+        width: 100%;
+
+        input {
+            width: 100% ;
+        }
+    }
+
+    
+    .hero {
+        img {
+            width: 100%;
+        }
+    }
+
+
+    
+}
+
+@media screen and (max-width: 400px) {
+    .hero__menu-content {
+        top: 200px;
+    }
+    
+}
 </style>
 

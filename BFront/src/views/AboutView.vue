@@ -21,6 +21,7 @@
     .about {
         margin: 0 auto;
         max-width: 900px;
+        padding: 0 10px;
 
         h2 {
             font-size: 40px;

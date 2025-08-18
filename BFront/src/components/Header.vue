@@ -53,4 +53,18 @@ import Logo from './Logo.vue';
             text-decoration: underline;
         }
     }
+
+    @media screen and (max-width: 550px) {
+        .header__wrapper {
+            flex-direction: column;
+            height: fit-content;
+        }
+
+        .header__menu {
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+        
+    }
 </style>

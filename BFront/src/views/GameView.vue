@@ -152,11 +152,11 @@ const res = await axios.get(GET_GAME_BY_ID_URL + route.params.id + '/').then(res
 }
 .game__requirements-list {
     border: 1px solid #ccc;
-    width: 900px;
+    max-width: 900px;
     padding: 20px;
 }
 .game__description {
-    width: 900px;
+    max-width: 900px;
     margin: 0 auto;
 }
 .game__requirements-param {
@@ -245,5 +245,29 @@ const res = await axios.get(GET_GAME_BY_ID_URL + route.params.id + '/').then(res
       }
     }
   
+@media screen and (max-width: 900px) {
+    .swiper__img {
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
 
+    .game__download {
+        flex-direction: column;
+        gap: 10px;
+
+        .game__download-link {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    .game__description {
+        padding: 0 10px;
+    }
+    
+}
 </style>
